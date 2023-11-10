@@ -720,7 +720,10 @@ function AudioInstall {
 
 #Creates shortcut for the GPU Updater tool
 function gpu-update-shortcut {
-    (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/parsec-cloud/Cloud-GPU-Updater/master/GPUUpdaterTool.ps1", "$env:ProgramData\ParsecLoader\GPUUpdaterTool.ps1")
+    # The original download link was from parsec-cloud/Cloud-GPU-Updater (also
+    # master branch), but there was a typo which had a stale PR. See:
+    # https://github.com/parsec-cloud/Cloud-GPU-Updater/pull/10
+    (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ning-y/Cloud-GPU-Updater/master/GPUUpdaterTool.ps1", "$env:ProgramData\ParsecLoader\GPUUpdaterTool.ps1")
     Unblock-File -Path "$env:ProgramData\ParsecLoader\GPUUpdaterTool.ps1"
     ProgressWriter -Status "Creating GPU Updater icon on Desktop" -PercentComplete $PercentComplete
     $Shell = New-Object -ComObject ("WScript.Shell")
